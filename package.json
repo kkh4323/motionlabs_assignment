@@ -33,7 +33,8 @@
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.10"
+    "typeorm": "^0.3.10",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@nestjs/cli": "9.2.0",
