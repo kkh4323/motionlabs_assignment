@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from '@database/database.module';
 import { PatientsModule } from '@patients/patients.module';
 import * as Joi from 'joi';
+import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import * as Joi from 'joi';
     }),
     DatabaseModule,
     PatientsModule,
+    TerminusModule,
   ],
   controllers: [AppController],
   providers: [AppService],
