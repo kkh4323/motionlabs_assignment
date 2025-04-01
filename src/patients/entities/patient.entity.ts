@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { BaseEntity } from '../../common/base.entity';
+import { BaseEntity } from '@common/base.entity';
 import { IsOptional, IsString, Length, Matches } from 'class-validator';
 
 @Entity()

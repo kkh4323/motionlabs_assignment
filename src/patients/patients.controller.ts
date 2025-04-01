@@ -9,7 +9,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { PatientsService } from './patients.service';
+import { PatientsService } from '@patients/patients.service';
 import {
   ApiBody,
   ApiConsumes,
@@ -21,9 +21,9 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as XLSX from 'xlsx';
 import { plainToInstance } from 'class-transformer';
-import { CreatePatientDto } from './dto/create-patient.dto';
+import { CreatePatientDto } from '@patients/dto/create-patient.dto';
 import { validate } from 'class-validator';
-import { FindPatientsDto } from './dto/find-patients.dto';
+import { FindPatientsDto } from '@patients/dto/find-patients.dto';
 
 @Controller('patients')
 @ApiTags('patients')

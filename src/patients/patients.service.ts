@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Patient } from './entities/patient.entity';
+import { Patient } from '@patients/entities/patient.entity';
 import { Repository } from 'typeorm';
-import { PatientQuery } from './interfaces/patientQuery';
+import { PatientQuery } from '@patients/interfaces/patientQuery';
 
 @Injectable()
 export class PatientsService {

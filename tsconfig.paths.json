@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": "/",
+    "paths": {
+      "@root/*": ["./src/*"],
+      "@common/*": ["./src/common/*"],
+      "@database/*": ["./src/database/*"],
+      "@patients/*": ["./src/patients/*"],
+    }
+  }
+}
