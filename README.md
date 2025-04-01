@@ -53,17 +53,17 @@ http://localhost:8080/api-docs
 ```
 
 ### Swagger 화면
-![Swagger 화면](../motionlabs_assignment/image/motionlabs_swagger.png)
+![Swagger 화면](./image/motionlabs_swagger.png)
 
 ### 서버 HealthCheck API 테스트 (Terminus)
-![Swagger 헬스체크](../motionlabs_assignment/image/Swagger_test_healthcheck.png)
+![Swagger 헬스체크](./image/Swagger_test_healthcheck.png)
 
 ### 환자 등록 API 테스트
-![Swagger 환자 등록](../motionlabs_assignment/image/Swagger_test_post_patients.png)
+![Swagger 환자 등록](./image/Swagger_test_post_patients.png)
 
 ### 환자 목록 조회 API 테스트
-![Swagger 환자 목록 조회](../motionlabs_assignment/image/Swagger_test_get_patients_1.png)
-![Swagger 환자 목록 조회](../motionlabs_assignment/image/Swagger_test_get_patients_2.png)
+![Swagger 환자 목록 조회](./image/Swagger_test_get_patients_1.png)
+![Swagger 환자 목록 조회](./image/Swagger_test_get_patients_2.png)
 
 ## Stay in touch
 - 이름: 김강호(Kim Kangho)
