@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Patient } from './entities/patient.entity';
 import { Repository } from 'typeorm';
+import { PatientQuery } from './interfaces/patientQuery';
 
 @Injectable()
 export class PatientsService {
@@ -82,5 +83,28 @@ export class PatientsService {
 
     // 총 처리된 환자 수 return
     return toInsert.length + toUpdate.length;
+  }
+
+  async findPatients(query: PatientQuery) {
+    const { page, limit, name, phone, chartNo } = query;
+
+    const where: any = {};
+    if (name) where.name = name;
+    if (phone) where.phone = phone;
+    if (chartNo) where.chartNo = chartNo;
+
+    const [data, total] = await this.patientRepository.findAndCount({
+      where,
+      take: limit,
+      skip: (page - 1) * limit,
+      order: { createdAt: 'DESC' },
+    });
+
+    return {
+      total,
+      page,
+      count: data.length,
+      data,
+    };
   }
 }

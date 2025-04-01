@@ -1,15 +1,20 @@
 import {
   Controller,
+  Get,
   Logger,
   Post,
+  Query,
   UploadedFile,
   UseInterceptors,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { PatientsService } from './patients.service';
 import {
   ApiBody,
   ApiConsumes,
   ApiOperation,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -18,6 +23,7 @@ import * as XLSX from 'xlsx';
 import { plainToInstance } from 'class-transformer';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { validate } from 'class-validator';
+import { FindPatientsDto } from './dto/find-patients.dto';
 
 @Controller('patients')
 @ApiTags('patients')
@@ -116,6 +122,53 @@ export class PatientsController {
       processedRows: processed,
       skippedRows: totalRows - processed,
     };
+  }
+
+  @UsePipes(new ValidationPipe({ transform: true }))
+  @Get()
+  @ApiOperation({
+    summary: '환자 목록 조회',
+    description: `데이터베이스에 저장된 환자 목록을 조회합니다.
+
+- 페이지네이션을 지원합니다.
+- 이름, 전화번호, 차트번호를 기준으로 검색할 수 있습니다.
+- 정확히 일치하는 조건으로 필터링됩니다.
+
+📌 예시 요청:
+\`\`\`
+GET /patients?page=1&limit=10&name=홍길동
+\`\`\`
+`,
+  })
+  @ApiQuery({
+    name: 'page',
+    required: false,
+    example: 1,
+    description: '조회할 페이지 번호 (기본값: 1)',
+  })
+  @ApiQuery({
+    name: 'limit',
+    required: false,
+    example: 10,
+    description: '페이지당 항목 수 (기본값: 10)',
+  })
+  @ApiQuery({
+    name: 'name',
+    required: false,
+    description: '환자 이름으로 검색 (정확히 일치해야 함)',
+  })
+  @ApiQuery({
+    name: 'phone',
+    required: false,
+    description: '전화번호로 검색 (숫자만 입력 가능)',
+  })
+  @ApiQuery({
+    name: 'chartNo',
+    required: false,
+    description: '차트번호로 검색',
+  })
+  async getPatients(@Query() query: FindPatientsDto) {
+    return await this.patientsService.findPatients(query);
   }
 
   // 주민등록번호 생년월일, 성별 식별값만 000000-0 형태로 변환
